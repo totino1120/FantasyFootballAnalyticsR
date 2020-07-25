@@ -1,0 +1,61 @@
+Constants               Package Constants
+Run_Scrape              Scrape gadget. Will be used as addin.
+analystOptions          Analyst options for a period
+analystPositions        Analyst positions
+analysts                Analyst data
+avgValue                Calculate average based on selected method
+calcStdDev              Calculate Standard Deviation
+calculatePoints         Caluclate fantasy points
+calculateRisk           Risk calculation based on to variables
+calculateVor            Calculate Value Over Replacement
+clusterTier             Set tiers based on clusters
+confidenceInterval      Calculate confidence interval
+createObject            Create objects from list
+dataGadget              Gadget used to display results of scrape
+                        calculations
+dataPeriod-class        Class to represent the period for a datascrape
+dataResult-class        Class to represent scrape results
+dropoffValue            Calculate Dropoff value
+ffa.scoreThreshold      Default Scoring threshold for tiers
+ffa.tierGroups          Default number of tiers for clusters
+ffa.vorAdjustment       Default VOR Adjustments
+ffa.vorBaseline         Default VOR Baseline
+ffanalytics             Scraping and calculating data to use for
+                        fantasy football projections.
+firstLast               Reverse Last and First Name
+getAAVdata              Get AAV data
+getADPdata              Get ADP data
+getCBSValues            ADP data from CBS
+getESPNValues           ADP and auction value data from ESPN
+getFFCValues            ADP data from FantasyFootballCalculator.com
+getMFLValues            ADP and auction value data from
+                        MyFantasyLeague.com
+getMeltedData           Melt data into long form
+getNFLValues            ADP data from FantasyFootballCalculator.com
+getPlayerData           Combine MFL and NFL player data
+getPlayerName           Clean Player Data For Projections
+getProjections          Calculate Projected Points
+getRanks                Expert Consensus Rankings
+getUrls                 URLs to scrape
+getYahooValues          ADP and auction value data from Yahoo
+mflPlayers              Read MFL Player Data
+nflPlayerData           Player Data from NFL.com
+periodType,dataPeriod-method
+                        Determine if period is a week or season
+projectPoints           Calculate points
+readUrl                 Read data from a URL
+redistributeValues      Redistribute values
+replaceMissingData      Find replacement data for missing values
+retrieveData            Retrive data from a source table
+runScrape               Scrape Projections
+scoringRules            Default scoring rules.
+setTier                 Set tiers based on thresholds
+siteTables              Table information
+siteUrls                URL information
+sites                   Site data
+sourceAnalyst-class     Class to represent the source Analysts
+sourceSite-class        Class to represent source sites
+sourceTable-class       Class to represent a data table from a source
+                        site
+tableColumns            Constants defining result columns
+tableRowRemove          Table rows to remove

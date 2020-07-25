@@ -21,9 +21,8 @@
 #' @import data.table
 #' @export mflPlayers
 mflPlayers <- function(season = 2016, weekNo = 0, pos = position.name){
-  #mflData <- XML::xmlToList(paste("http://api.myfantasyleague.com/", season,"/export?TYPE=players&L=&W=", weekNo, "&JSON=0&DETAILS=1", sep =""))
-  mflContent <- httr::content(httr::GET(paste("https://api.myfantasyleague.com/2020/export?TYPE=players&APIKEY=MFLPlayers&DETAILS=1&JSON=0", sep ="")))
-  mflData <- XML::xmlToList(mflContent)
+  mflData <- XML::xmlToList(paste("http://api.myfantasyleague.com/", season,
+                                  "/export?TYPE=players&L=&W=", weekNo, "&JSON=0&DETAILS=1", sep =""))
   mflData$.attrs <- NULL
 
   mflData <- data.table::rbindlist(lapply(mflData, function(pl)data.table::data.table(t(pl))), fill = TRUE)

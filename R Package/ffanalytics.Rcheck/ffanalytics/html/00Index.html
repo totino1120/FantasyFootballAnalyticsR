@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>R: Fantasy Football Analytics</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+<h1> Fantasy Football Analytics
+<img class="toplogo" src="../../../doc/html/Rlogo.svg" alt="[R logo]" />
+</h1>
+<hr/>
+<div style="text-align: center;">
+<a href="../../../doc/html/packages.html"><img class="arrow" src="../../../doc/html/left.jpg" alt="[Up]" /></a>
+<a href="../../../doc/html/index.html"><img class="arrow" src="../../../doc/html/up.jpg" alt="[Top]" /></a>
+</div><h2>Documentation for package &lsquo;ffanalytics&rsquo; version 0.1.91</h2>
+
+<ul><li><a href="../DESCRIPTION">DESCRIPTION file</a>.</li>
+</ul>
+
+<h2>Help Pages</h2>
+
+
+<table width="100%">
+<tr><td style="width: 25%;"><a href="ffanalytics.html">ffanalytics-package</a></td>
+<td>Scraping and calculating data to use for fantasy football projections.</td></tr>
+<tr><td style="width: 25%;"><a href="analystOptions.html">analystOptions</a></td>
+<td>Analyst options for a period</td></tr>
+<tr><td style="width: 25%;"><a href="analystPositions.html">analystPositions</a></td>
+<td>Analyst positions</td></tr>
+<tr><td style="width: 25%;"><a href="analysts.html">analysts</a></td>
+<td>Analyst data</td></tr>
+<tr><td style="width: 25%;"><a href="avgValue.html">avgValue</a></td>
+<td>Calculate average based on selected method</td></tr>
+<tr><td style="width: 25%;"><a href="calcStdDev.html">calcStdDev</a></td>
+<td>Calculate Standard Deviation</td></tr>
+<tr><td style="width: 25%;"><a href="calculatePoints.html">calculatePoints</a></td>
+<td>Caluclate fantasy points</td></tr>
+<tr><td style="width: 25%;"><a href="calculateRisk.html">calculateRisk</a></td>
+<td>Risk calculation based on to variables</td></tr>
+<tr><td style="width: 25%;"><a href="calculateVor.html">calculateVor</a></td>
+<td>Calculate Value Over Replacement</td></tr>
+<tr><td style="width: 25%;"><a href="clusterTier.html">clusterTier</a></td>
+<td>Set tiers based on clusters</td></tr>
+<tr><td style="width: 25%;"><a href="confidenceInterval.html">confidenceInterval</a></td>
+<td>Calculate confidence interval</td></tr>
+<tr><td style="width: 25%;"><a href="Constants.html">Constants</a></td>
+<td>Package Constants</td></tr>
+<tr><td style="width: 25%;"><a href="createObject.html">createObject</a></td>
+<td>Create objects from list</td></tr>
+<tr><td style="width: 25%;"><a href="dataGadget.html">dataGadget</a></td>
+<td>Gadget used to display results of scrape calculations</td></tr>
+<tr><td style="width: 25%;"><a href="dataPeriod-class.html">dataPeriod</a></td>
+<td>Class to represent the period for a datascrape</td></tr>
+<tr><td style="width: 25%;"><a href="dataPeriod-class.html">dataPeriod-class</a></td>
+<td>Class to represent the period for a datascrape</td></tr>
+<tr><td style="width: 25%;"><a href="dataResult-class.html">dataResult</a></td>
+<td>Class to represent scrape results</td></tr>
+<tr><td style="width: 25%;"><a href="dataResult-class.html">dataResult-class</a></td>
+<td>Class to represent scrape results</td></tr>
+<tr><td style="width: 25%;"><a href="dropoffValue.html">dropoffValue</a></td>
+<td>Calculate Dropoff value</td></tr>
+<tr><td style="width: 25%;"><a href="ffa.scoreThreshold.html">ffa.scoreThreshold</a></td>
+<td>Default Scoring threshold for tiers</td></tr>
+<tr><td style="width: 25%;"><a href="ffa.tierGroups.html">ffa.tierGroups</a></td>
+<td>Default number of tiers for clusters</td></tr>
+<tr><td style="width: 25%;"><a href="ffa.vorAdjustment.html">ffa.vorAdjustment</a></td>
+<td>Default VOR Adjustments</td></tr>
+<tr><td style="width: 25%;"><a href="ffa.vorBaseline.html">ffa.vorBaseline</a></td>
+<td>Default VOR Baseline</td></tr>
+<tr><td style="width: 25%;"><a href="ffanalytics.html">ffanalytics</a></td>
+<td>Scraping and calculating data to use for fantasy football projections.</td></tr>
+<tr><td style="width: 25%;"><a href="firstLast.html">firstLast</a></td>
+<td>Reverse Last and First Name</td></tr>
+<tr><td style="width: 25%;"><a href="getAAVdata.html">getAAVdata</a></td>
+<td>Get AAV data</td></tr>
+<tr><td style="width: 25%;"><a href="getADPdata.html">getADPdata</a></td>
+<td>Get ADP data</td></tr>
+<tr><td style="width: 25%;"><a href="getCBSValues.html">getCBSValues</a></td>
+<td>ADP data from CBS</td></tr>
+<tr><td style="width: 25%;"><a href="getESPNValues.html">getESPNValues</a></td>
+<td>ADP and auction value data from ESPN</td></tr>
+<tr><td style="width: 25%;"><a href="getFFCValues.html">getFFCValues</a></td>
+<td>ADP data from FantasyFootballCalculator.com</td></tr>
+<tr><td style="width: 25%;"><a href="getMeltedData.html">getMeltedData</a></td>
+<td>Melt data into long form</td></tr>
+<tr><td style="width: 25%;"><a href="getMFLValues.html">getMFLValues</a></td>
+<td>ADP and auction value data from MyFantasyLeague.com</td></tr>
+<tr><td style="width: 25%;"><a href="getNFLValues.html">getNFLValues</a></td>
+<td>ADP data from FantasyFootballCalculator.com</td></tr>
+<tr><td style="width: 25%;"><a href="getPlayerData.html">getPlayerData</a></td>
+<td>Combine MFL and NFL player data</td></tr>
+<tr><td style="width: 25%;"><a href="getPlayerName.html">getPlayerName</a></td>
+<td>Clean Player Data For Projections</td></tr>
+<tr><td style="width: 25%;"><a href="getProjections.html">getProjections</a></td>
+<td>Calculate Projected Points</td></tr>
+<tr><td style="width: 25%;"><a href="getRanks.html">getRanks</a></td>
+<td>Expert Consensus Rankings</td></tr>
+<tr><td style="width: 25%;"><a href="getUrls.html">getUrls</a></td>
+<td>URLs to scrape</td></tr>
+<tr><td style="width: 25%;"><a href="getYahooValues.html">getYahooValues</a></td>
+<td>ADP and auction value data from Yahoo</td></tr>
+<tr><td style="width: 25%;"><a href="mflPlayers.html">mflPlayers</a></td>
+<td>Read MFL Player Data</td></tr>
+<tr><td style="width: 25%;"><a href="nflPlayerData.html">nflPlayerData</a></td>
+<td>Player Data from NFL.com</td></tr>
+<tr><td style="width: 25%;"><a href="periodType-dataPeriod-method.html">periodType-method</a></td>
+<td>Determine if period is a week or season</td></tr>
+<tr><td style="width: 25%;"><a href="Constants.html">position.Id</a></td>
+<td>Package Constants</td></tr>
+<tr><td style="width: 25%;"><a href="Constants.html">position.name</a></td>
+<td>Package Constants</td></tr>
+<tr><td style="width: 25%;"><a href="projectPoints.html">projectPoints</a></td>
+<td>Calculate points</td></tr>
+<tr><td style="width: 25%;"><a href="readUrl.html">readUrl</a></td>
+<td>Read data from a URL</td></tr>
+<tr><td style="width: 25%;"><a href="redistributeValues.html">redistributeValues</a></td>
+<td>Redistribute values</td></tr>
+<tr><td style="width: 25%;"><a href="replaceMissingData.html">replaceMissingData</a></td>
+<td>Find replacement data for missing values</td></tr>
+<tr><td style="width: 25%;"><a href="tableColumns.html">resultColumns</a></td>
+<td>Constants defining result columns</td></tr>
+<tr><td style="width: 25%;"><a href="retrieveData.html">retrieveData</a></td>
+<td>Retrive data from a source table</td></tr>
+<tr><td style="width: 25%;"><a href="runScrape.html">runScrape</a></td>
+<td>Scrape Projections</td></tr>
+<tr><td style="width: 25%;"><a href="Run_Scrape.html">Run_Scrape</a></td>
+<td>Scrape gadget. Will be used as addin.</td></tr>
+<tr><td style="width: 25%;"><a href="scoringRules.html">scoringRules</a></td>
+<td>Default scoring rules.</td></tr>
+<tr><td style="width: 25%;"><a href="setTier.html">setTier</a></td>
+<td>Set tiers based on thresholds</td></tr>
+<tr><td style="width: 25%;"><a href="sites.html">sites</a></td>
+<td>Site data</td></tr>
+<tr><td style="width: 25%;"><a href="siteTables.html">siteTables</a></td>
+<td>Table information</td></tr>
+<tr><td style="width: 25%;"><a href="siteUrls.html">siteUrls</a></td>
+<td>URL information</td></tr>
+<tr><td style="width: 25%;"><a href="sourceAnalyst-class.html">sourceAnalyst</a></td>
+<td>Class to represent the source Analysts</td></tr>
+<tr><td style="width: 25%;"><a href="sourceAnalyst-class.html">sourceAnalyst-class</a></td>
+<td>Class to represent the source Analysts</td></tr>
+<tr><td style="width: 25%;"><a href="sourceSite-class.html">sourceSite</a></td>
+<td>Class to represent source sites</td></tr>
+<tr><td style="width: 25%;"><a href="sourceSite-class.html">sourceSite-class</a></td>
+<td>Class to represent source sites</td></tr>
+<tr><td style="width: 25%;"><a href="sourceTable-class.html">sourceTable</a></td>
+<td>Class to represent a data table from a source site</td></tr>
+<tr><td style="width: 25%;"><a href="sourceTable-class.html">sourceTable-class</a></td>
+<td>Class to represent a data table from a source site</td></tr>
+<tr><td style="width: 25%;"><a href="tableColumns.html">staticColumns</a></td>
+<td>Constants defining result columns</td></tr>
+<tr><td style="width: 25%;"><a href="tableColumns.html">tableColumns</a></td>
+<td>Constants defining result columns</td></tr>
+<tr><td style="width: 25%;"><a href="tableRowRemove.html">tableRowRemove</a></td>
+<td>Table rows to remove</td></tr>
+<tr><td style="width: 25%;"><a href="Constants.html">yahooLeague</a></td>
+<td>Package Constants</td></tr>
+</table>
+</body></html>

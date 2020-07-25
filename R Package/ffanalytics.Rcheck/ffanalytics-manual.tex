@@ -1,0 +1,1676 @@
+\nonstopmode{}
+\documentclass[a4paper]{book}
+\usepackage[times,inconsolata,hyper]{Rd}
+\usepackage{makeidx}
+\usepackage[utf8,latin1]{inputenc}
+% \usepackage{graphicx} % @USE GRAPHICX@
+\makeindex{}
+\begin{document}
+\chapter*{}
+\begin{center}
+{\textbf{\huge Package `ffanalytics'}}
+\par\bigskip{\large \today}
+\end{center}
+\begin{description}
+\raggedright{}
+\item[Type]\AsIs{Package}
+\item[Title]\AsIs{Fantasy Football Analytics}
+\item[Version]\AsIs{0.1.91}
+\item[Author]\AsIs{Dennis Andersen [aut, cre], Isaac Petersen [ctb]}
+\item[Maintainer]\AsIs{Dennis Andersen }\email{andersen.dennis@live.com}\AsIs{}
+\item[Description]\AsIs{Scrape fantasy football projections from multiple sources and
+calculate projected fantasy points for your drafts.}
+\item[License]\AsIs{GPL-3}
+\item[URL]\AsIs{}\url{http://fantasyfootballanalytics.net/}\AsIs{}
+\item[LazyData]\AsIs{TRUE}
+\item[Depends]\AsIs{shiny, miniUI}
+\item[Imports]\AsIs{data.table, stringr, DT, XML, httr, tcltk, RCurl, Hmisc,
+readxl, RSelenium}
+\item[RoxygenNote]\AsIs{5.0.1}
+\item[Collate]\AsIs{'calcStdDev.R' 'calculatePoints.R' 'calculateRisk.R'
+'calculationDataPrep.R' 'columnVariables.R'
+'confidenceInterval.R' 'createObject.R' 'data.R' 'dataGadget.R'
+'dataPeriod.R' 'dataResult.R' 'externalConstants.R'
+'extractTeamNames.R' 'ffanalytics.R' 'getAdpAav.R'
+'getAdpData.R' 'getPlayerData.R' 'getPlayerName.R'
+'getProjections.R' 'getRanks.R' 'sourceSite.R'
+'sourceAnalyst.R' 'sourceTable.R' 'getUrls.R'
+'helperFunctions.R' 'internalConstants.R' 'leagueScoring.R'
+'mflPlayers.R' 'nflPlayerData.R' 'projectPoints.R'
+'projectionGadget.R' 'readUrl.R' 'retrieveData.R' 'runScrape.R'
+'scoringUI.R' 'scrapeGadget.R' 'scrapeJQuery.R'
+'scrapeJSONdata.R' 'tableMerge.R' 'tierFunction.R'
+'yahooBasics.R'}
+\item[NeedsCompilation]\AsIs{no}
+\end{description}
+\Rdcontents{\R{} topics documented:}
+\inputencoding{utf8}
+\HeaderA{analystOptions}{Analyst options for a period}{analystOptions}
+%
+\begin{Description}\relax
+Find the analysts that are projecting stats for the provided period
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+analystOptions(period)
+\end{verbatim}
+\end{Usage}
+\inputencoding{utf8}
+\HeaderA{analystPositions}{Analyst positions}{analystPositions}
+\keyword{datasets}{analystPositions}
+%
+\begin{Description}\relax
+Data table identifying which positions the different analysts are projecting
+for
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+analystPositions
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+A \LinkA{data.table}{data.table} with 151 rows and 4 columns
+\begin{description}
+
+\item[analystId] An integer identifying the analyst the row is referring to.
+Refers to the linkanalyst table.
+\item[position] Name of the position
+\item[season] Indicates whether the analysts projects seasonal data for the
+position.
+\item[weekly] Indicates whether the analysts projects weekly data for the
+position.
+
+\end{description}
+\end{Format}
+\inputencoding{utf8}
+\HeaderA{analysts}{Analyst data}{analysts}
+\keyword{datasets}{analysts}
+%
+\begin{Description}\relax
+Data table with information on analysts that are bing used for data scrapes.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+analysts
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+A \LinkA{data.table}{data.table} with 27 rows and 7 columns
+\begin{description}
+
+\item[analystId] Unique integer identifier for the analyst
+\item[analystName] Name of analyst
+\item[siteId] An integer identifying the site that the analyst is projecting
+for. Refers to \LinkA{sites}{sites} table.
+\item[season] Indicator of whether the analyst projects seasonal data or not
+\item[weekly] Indicator of whether the analyst projects weekly data or not
+\item[sourceId] The identifier that the site uses for the analyst if any
+\item[weight] The weight used for the analyst in the weighted calculations
+
+\end{description}
+\end{Format}
+\inputencoding{utf8}
+\HeaderA{avgValue}{Calculate average based on selected method}{avgValue}
+%
+\begin{Description}\relax
+Will calculate average of provided data and weights based on the selected
+method
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+avgValue(calcMethod = "weighted", dataValue = as.numeric(),
+  dataWeights = as.numeric(), na.rm = FALSE)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{calcMethod}] One of \code{c("average", "weighted", "robust")}
+
+\item[\code{dataValue}] A numeric vector of values to average base on chosen calculation
+method.
+
+\item[\code{dataWeights}] A numeric vector of weight values associated with the
+dataValue parameter.
+
+\item[\code{na.rm}] A logical value determining if NA values should be removed.
+\end{ldescription}
+\end{Arguments}
+\inputencoding{utf8}
+\HeaderA{calcStdDev}{Calculate Standard Deviation}{calcStdDev}
+%
+\begin{Description}\relax
+Standard Deviation is calculated based on method passed to the function.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+calcStdDev(calcMethod = "weighted", dataValue = as.numeric(),
+  dataWeights = as.numeric(), na.rm = FALSE)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{calcMethod}] Calculation method. Can be one of "weighted", "robust" or
+"average"
+
+\item[\code{dataValue}] Vector of values to calculate standard deviation for
+
+\item[\code{dataWeights}] Vector of weights for weighted calculation
+\end{ldescription}
+\end{Arguments}
+\inputencoding{utf8}
+\HeaderA{calculatePoints}{Caluclate fantasy points}{calculatePoints}
+%
+\begin{Description}\relax
+Based on list of scoring rules calculate fantasy points using projection data
+passed in a table
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+calculatePoints(projectionData = data.table(), scoringRules = list())
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{projectionData}] A \LinkA{data.table}{data.table} with projected stats.
+Should from the \LinkA{getMeltedData}{getMeltedData} function
+
+\item[\code{scoringRules}] A list of scoring rules with one element per position
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A \LinkA{data.table}{data.table} with up to 4 cloumns
+\begin{description}
+
+\item[position] The position the player is playing
+\item[playerId] The ID of the player. Get player names by merging results from
+\LinkA{getPlayerData}{getPlayerData}
+\item[analyst] The ID of the analyst which projections are used as the basis
+for the points
+\item[points] The calculated number of fantasy points
+
+\end{description}
+
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{calculateRisk}{Risk calculation based on to variables}{calculateRisk}
+%
+\begin{Description}\relax
+Calculation of risk is done by scaling the standard deviation variables
+passed and averaging them before returning a measure with mean 5 and standard
+deviation of 2
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+calculateRisk(var1, var2)
+\end{verbatim}
+\end{Usage}
+\inputencoding{utf8}
+\HeaderA{calculateVor}{Calculate Value Over Replacement}{calculateVor}
+%
+\begin{Description}\relax
+Based on provided ranks and points calculate the value over replacement.
+Function uses \LinkA{vorBaseline}{vorBaseline} and \LinkA{vorAdjustment}{vorAdjustment} in the calculation.
+Please adjust these to match your league before running calculation.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+calculateVor(ranks, points, position)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{ranks}] Player ranks
+
+\item[\code{points}] Player Points
+
+\item[\code{position}] Player Position. Used to extract value from \LinkA{vorBaseline}{vorBaseline}
+and \LinkA{vorAdjustment}{vorAdjustment}
+\end{ldescription}
+\end{Arguments}
+\inputencoding{utf8}
+\HeaderA{clusterTier}{Set tiers based on clusters}{clusterTier}
+%
+\begin{Description}\relax
+Set tiers based on clusters
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+clusterTier(points, position)
+\end{verbatim}
+\end{Usage}
+\inputencoding{utf8}
+\HeaderA{confidenceInterval}{Calculate confidence interval}{confidenceInterval}
+%
+\begin{Description}\relax
+Confidence intervals are determined as percentiles (default 10 and 90).
+If the correcpsonding average value is less than the low point then we
+set the lower point to the minimum value. Conversely if the average value is
+higher than the upper limit then we set the upper limit to the max value.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+confidenceInterval(calcMethod = "weighted", dataValue = as.numeric(),
+  dataWeights = as.numeric(), pValues = c(0.1, 0.9), na.rm = FALSE)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{calcMethod}] Calculation method. Can be one of "weighted", "robust" or
+"average"
+
+\item[\code{dataValue}] Vector of values to calculate confidence interval for
+
+\item[\code{dataWeights}] Vector of weights for weighted calculation
+
+\item[\code{pValues}] Vector of percentiles for the confidence interval. Defaults to
+\code{c(0.1, 0.9)} for 10 and 90 percentiles.
+\end{ldescription}
+\end{Arguments}
+\inputencoding{utf8}
+\HeaderA{Constants}{Package Constants}{Constants}
+\aliasA{position.Id}{Constants}{position.Id}
+\aliasA{position.name}{Constants}{position.name}
+\aliasA{yahooLeague}{Constants}{yahooLeague}
+\keyword{datasets}{Constants}
+%
+\begin{Description}\relax
+Constants build into the package
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+position.name
+
+position.Id
+
+yahooLeague
+\end{verbatim}
+\end{Usage}
+%
+\begin{Details}\relax
+A number of constants are included in the package
+\end{Details}
+\inputencoding{utf8}
+\HeaderA{createObject}{Create objects from list}{createObject}
+%
+\begin{Description}\relax
+Allows creation of class objects based on a list.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+createObject(objName = as.character(), targetValues = list())
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{objName}] Name of object to be created
+
+\item[\code{targetValues}] List of values representing slots in the object
+\end{ldescription}
+\end{Arguments}
+\inputencoding{utf8}
+\HeaderA{dataGadget}{Gadget used to display results of scrape calculations}{dataGadget}
+%
+\begin{Description}\relax
+Gadget used to display results of scrape calculations
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+dataGadget(inputData)
+\end{verbatim}
+\end{Usage}
+\inputencoding{utf8}
+\HeaderA{dataPeriod-class}{Class to represent the period for a datascrape}{dataPeriod.Rdash.class}
+\aliasA{dataPeriod}{dataPeriod-class}{dataPeriod}
+%
+\begin{Description}\relax
+The datascrapes need a week and season designation to work.
+\end{Description}
+%
+\begin{Section}{Slots}
+
+\begin{description}
+
+\item[\code{weekNo}] An integer representing the week number. 0 for preseason, 1-17
+for regular season and 18-21 for post season
+
+\item[\code{season}] A year representing the season. Should be 2008 or later but
+can't be higher than current year
+
+\end{description}
+\end{Section}
+%
+\begin{Examples}
+\begin{ExampleCode}
+dataPeriod(weekNo = 1, season = 2015) # Week 1 of the 2015 season
+dataPeriod(season = 2015)             # 2015 season
+dataPeriod(weekNo = 3)                # Week 3 of the current year
+dataPeriod()                          # Current season
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{dataResult-class}{Class to represent scrape results}{dataResult.Rdash.class}
+\aliasA{dataResult}{dataResult-class}{dataResult}
+%
+\begin{Description}\relax
+Class to represent scrape results
+\end{Description}
+%
+\begin{Section}{Slots}
+
+\begin{description}
+
+\item[\code{position}] Position that the scrape data isfor
+
+\item[\code{resultData}] A \LinkA{data.table}{data.table} holding the data. The columns in the
+table are determined by the \LinkA{staticColumns}{staticColumns} and \LinkA{resultColumns}{resultColumns}.
+
+\end{description}
+\end{Section}
+\inputencoding{utf8}
+\HeaderA{dropoffValue}{Calculate Dropoff value}{dropoffValue}
+%
+\begin{Description}\relax
+Calculate Dropoff value
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+dropoffValue(dataValue)
+\end{verbatim}
+\end{Usage}
+\inputencoding{utf8}
+\HeaderA{ffa.scoreThreshold}{Default Scoring threshold for tiers}{ffa.scoreThreshold}
+\keyword{datasets}{ffa.scoreThreshold}
+%
+\begin{Description}\relax
+Default Scoring threshold for tiers
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+ffa.scoreThreshold
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+An object of class \code{numeric} of length 9.
+\end{Format}
+\inputencoding{utf8}
+\HeaderA{ffa.tierGroups}{Default number of tiers for clusters}{ffa.tierGroups}
+\keyword{datasets}{ffa.tierGroups}
+%
+\begin{Description}\relax
+Default number of tiers for clusters
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+ffa.tierGroups
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+An object of class \code{numeric} of length 9.
+\end{Format}
+\inputencoding{utf8}
+\HeaderA{ffa.vorAdjustment}{Default VOR Adjustments}{ffa.vorAdjustment}
+\keyword{datasets}{ffa.vorAdjustment}
+%
+\begin{Description}\relax
+Default VOR Adjustments
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+ffa.vorAdjustment
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+An object of class \code{numeric} of length 9.
+\end{Format}
+\inputencoding{utf8}
+\HeaderA{ffa.vorBaseline}{Default VOR Baseline}{ffa.vorBaseline}
+\keyword{datasets}{ffa.vorBaseline}
+%
+\begin{Description}\relax
+Default VOR Baseline
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+ffa.vorBaseline
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+An object of class \code{numeric} of length 9.
+\end{Format}
+\inputencoding{utf8}
+\HeaderA{ffanalytics}{Scraping and calculating data to use for fantasy football projections.}{ffanalytics}
+\aliasA{ffanalytics-package}{ffanalytics}{ffanalytics.Rdash.package}
+%
+\begin{Description}\relax
+The ffanalytics package provides three categories of important functions:
+scrape, calculation and analysis.
+\end{Description}
+%
+\begin{Section}{Scrape functions}
+
+The scrape flow works like this:
+\begin{enumerate}
+
+\item{} User initiates the script and specifies the data period that needs to
+be scraped
+\item{} The scripts displays available analysts to scrape and the user selects
+which to use
+\item{} The script then displays available positions and asks the user to
+select positions to scrape.
+\item{}  Data scrape is executed and returns a list with a data table for each
+position
+\end{enumerate}
+
+User can next specify which aggregate method to apply and execute the
+calculation scripts on this list to get a data table with projected points,
+confidence intervals, rankings, risk etc.
+
+Tiers are calculated using effect size thresholds based on Cohen's d.
+D value thresholds for determining tiers for each position can be set by:
+\code{tierDValues <- c(QB = 0.25, RB = 0.4, WR = 0.4, TE = 0.35, K = 0.15, DST = 0.1, DL = 0.3, DB = 0.13, LB = 0.3)}
+\end{Section}
+\inputencoding{utf8}
+\HeaderA{firstLast}{Reverse Last and First Name}{firstLast}
+%
+\begin{Description}\relax
+Takes an input string in the form of "Last Name, First Name" and converts it
+to "First Name Last Name".
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+firstLast(lastFirst)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{lastFist}] A string with the name to be converted
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Examples}
+\begin{ExampleCode}
+firstLast("Smith, John") # Will return John Smith
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{getAAVdata}{Get AAV data}{getAAVdata}
+%
+\begin{Description}\relax
+Retrieve AAV data from multiple sources and combine into average.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+getAAVdata(AAVsources = c("ESPN", "MFL", "NFL"),
+  season = as.POSIXlt(Sys.Date())$year + 1900, teams = 12,
+  format = "standard", mflMocks = NULL, mflLeagues = NULL)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{season}] The season the ADP data is from
+
+\item[\code{teams}] Number of teams in the league
+
+\item[\code{format}] The format of the league, i.e. standard, ppr
+
+\item[\code{mflMocks}] Include mock drafts from MFL. Set to 1 if only mock drafts
+should be used, 0 if only real drafts should be used. If not speficied all
+types of drafts will be used.
+
+\item[\code{mflLeagues}] What type of leagues to include for MFL. Set to 0 to use
+redraft leagues only; 1 to only use keeper leagues, 2 for rookie drafts, and
+3 for MFL Public Leagues. If not speficied all types of drafts will be used.
+
+\item[\code{ADPsource}] Character vector with one or more of
+\code{"CBS", "ESPN", "FFC", "MFL", "NFL"}
+\end{ldescription}
+\end{Arguments}
+\inputencoding{utf8}
+\HeaderA{getADPdata}{Get ADP data}{getADPdata}
+%
+\begin{Description}\relax
+Retrieve ADP data from multiple sources and combine into average.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+getADPdata(ADPsources = c("CBS", "ESPN", "FFC", "MFL", "NFL"),
+  season = as.POSIXlt(Sys.Date())$year + 1900, teams = 12,
+  format = "standard", mflMocks = NULL, mflLeagues = NULL)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{season}] The season the ADP data is from
+
+\item[\code{teams}] Number of teams in the league
+
+\item[\code{format}] The format of the league, i.e. standard, ppr
+
+\item[\code{mflMocks}] Include mock drafts from MFL. Set to 1 if only mock drafts
+should be used, 0 if only real drafts should be used. If not speficied all
+types of drafts will be used.
+
+\item[\code{mflLeagues}] What type of leagues to include for MFL. Set to 0 to use
+redraft leagues only; 1 to only use keeper leagues, 2 for rookie drafts, and
+3 for MFL Public Leagues. If not speficied all types of drafts will be used.
+
+\item[\code{ADPsource}] Character vector with one or more of
+\code{"CBS", "ESPN", "FFC", "MFL", "NFL"}
+\end{ldescription}
+\end{Arguments}
+\inputencoding{utf8}
+\HeaderA{getCBSValues}{ADP data from CBS}{getCBSValues}
+%
+\begin{Description}\relax
+Retrieve ADP data from CBS
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+getCBSValues()
+\end{verbatim}
+\end{Usage}
+%
+\begin{Value}
+\LinkA{data.table}{data.table} with 3 columns:
+\begin{description}
+
+\item[cbsId] Player ID from CBS. Merge with results from \LinkA{getPlayerData}{getPlayerData}
+to get player names
+\item[adp] Average ADP
+\item[leagueType] Assuming standard league type
+\end{description}
+
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{getESPNValues}{ADP and auction value data from ESPN}{getESPNValues}
+%
+\begin{Description}\relax
+Retrieve ADP and auction value from ESPN
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+getESPNValues()
+\end{verbatim}
+\end{Usage}
+%
+\begin{Value}
+\LinkA{data.table}{data.table} with 6 columns:
+\begin{description}
+
+\item[player] Name of player
+\item[position] Player position
+\item[team] Team the player is playing for
+\item[adp] Average ADP
+\item[aav] Average auction value
+\item[leagueType] Assuming standard league type
+\end{description}
+
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{getFFCValues}{ADP data from FantasyFootballCalculator.com}{getFFCValues}
+%
+\begin{Description}\relax
+Retrieve ADP data from fantasyfootballcalculator.com.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+getFFCValues(format = "standard", teams = 12)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{format}] Format of league. Can be one of \code{"standard", "ppr", "2qb", "dynasty", "rookie"}.
+
+\item[\code{teams}] Numer of teams in the league. One of 8, 10, 12, 14
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+\LinkA{data.table}{data.table} with 5 columns:
+\begin{description}
+
+\item[player] Name of player
+\item[position] Player position
+\item[team] Team the player is playing for
+\item[adp] Average ADP
+\item[leagueType] Chosen format for the league
+\end{description}
+
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{getMeltedData}{Melt data into long form}{getMeltedData}
+%
+\begin{Description}\relax
+Takes the data result with a projected stat in each column and melts the
+data into one row per player per stat column.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+getMeltedData(dataResult)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{dataResult}] A \LinkA{dataResult}{dataResult} object from the data scrape
+\end{ldescription}
+\end{Arguments}
+\inputencoding{utf8}
+\HeaderA{getMFLValues}{ADP and auction value data from MyFantasyLeague.com}{getMFLValues}
+%
+\begin{Description}\relax
+Retrieve ADP and auction value data from MyFantasyLeague.com
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+getMFLValues(season = as.POSIXlt(Sys.Date())$year + 1900, type = "adp",
+  teams = -1, ppr = -1, mock = -1, keeper = -1)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{season}] Year the data is retrieved for
+
+\item[\code{type}] One of "adp" or "aav" to indicate whether ADP or auction values
+should be retrieved.
+
+\item[\code{teams}] Number of teams. If specified only drafts with that number of
+teams will be include
+
+\item[\code{ppr}] Specify if only ppr or non-ppr drafts should be considered. Set to 1
+if only ppr drafts should be used, 0 if only standard drafts should be used.
+If not specified all types of draft will be used.
+
+\item[\code{mock}] Specify if only mock or real drafts should be used. Set to 1 if
+only mock drafts should be used, 0 if only real drafts should be used. If not
+speficied all types of drafts will be used.
+
+\item[\code{keeper}] Specify to select what types of leagues should be used. Set to 0
+to use redraft leagues only; 1 to only use keeper leagues, 2 for rookie drafts,
+and 3 for MFL Public Leagues. If not  speficied all types of drafts will be used.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+\LinkA{data.table}{data.table} wih up to 5 columns:
+\begin{description}
+
+\item[mflId] Player ID from MFL Merge with results from \LinkA{getPlayerData}{getPlayerData}
+to get player names
+\item[selectedIn] Number of drafts player has been selected in
+\item[aav] Average auction value
+\item[adp] ADP
+\item[minPick] Earliest pick
+\item[maxPick] Latest pick
+
+\end{description}
+
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{getNFLValues}{ADP data from FantasyFootballCalculator.com}{getNFLValues}
+%
+\begin{Description}\relax
+Retrieve ADP data from fantasyfootballcalculator.com.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+getNFLValues()
+\end{verbatim}
+\end{Usage}
+%
+\begin{Value}
+\LinkA{data.table}{data.table} with 5 columns:
+\begin{description}
+
+\item[esbid] Player ID for the player. Merge with results from \LinkA{getPlayerData}{getPlayerData}
+to get player names
+\item[player] Name of player
+\item[position] Player position
+\item[adp] Average ADP
+\item[aav] Average auction value
+
+\end{description}
+
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{getPlayerData}{Combine MFL and NFL player data}{getPlayerData}
+%
+\begin{Description}\relax
+Retrieve data from MFL and NFL and combine
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+getPlayerData(season, weekNo, pos = position.name)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{season}] The year that player data is to be retrieved from
+
+\item[\code{weekNo}] The weekNo that the player data is to be retrieved from
+
+\item[\code{pos}] A character vector with position names to be retrieved
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A \LinkA{data.table}{data.table} with 13 columns
+\begin{description}
+
+\item[playerId] NFL's ID for the player
+\item[player] Name of player
+\item[yahooId] Yahoo's ID for the player
+\item[cbsId] CBS's ID for the player
+\item[mflId] MFL's ID for the player
+\item[position] The position the player is playing
+\item[team] The team the player is playing for
+\item[draftYear] The year the player was drafted
+\item[birthData] The players birth date
+\item[rookie] A logical value indicating whether the player is a rookie
+\item[opponent] Team the player is facing next
+\item[depthChart] Number on the depth chart for the player 1 = starter
+\item[esbid] Alternate ID for player. Used for ADP/AAV data from NFL
+
+\end{description}
+
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{getPlayerName}{Clean Player Data For Projections}{getPlayerName}
+%
+\begin{Description}\relax
+For many of the the data soruces the player column contains more data than
+needed to identify the player. With the help of regular expression data such as position,
+team and injury information is cleaned from the player names.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+getPlayerName(playerCol)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{playerCol}] The vector of player data taken from the data table that is returned from
+the data scrape
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+The updated vector of player data
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{getProjections}{Calculate Projected Points}{getProjections}
+%
+\begin{Description}\relax
+Calculate projected fantasy points, confidence intervals, risk, tiers, etc.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+getProjections(scrapeData = NULL, avgMethod = "average",
+  leagueScoring = scoringRules, vorBaseline, vorType, teams = 12,
+  format = "standard", mflMocks = NULL, mflLeagues = NULL,
+  adpSources = c("CBS", "ESPN", "FFC", "MFL", "NFL"), getADP = TRUE,
+  getECR = TRUE, writeFile = TRUE)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{scrapeData}] The scraped projections data from \LinkA{runScrape}{runScrape}.
+
+\item[\code{avgMethod}] A string specifying which average method to use for aggregating the
+projections from different sources: mean ("average"), robust average ("robust"), or weighted average ("weighted"). Defaults to mean. Edit the analysts' weights for the weighted average in the \LinkA{analysts}{analysts} table.
+
+\item[\code{leagueScoring}] List of scoring rules for the league see \LinkA{scoringRules}{scoringRules}
+for an example.
+
+\item[\code{vorBaseline}] The numbers (position rank values or point values) at each position to use for the baseline when
+calculating VOR.
+
+\item[\code{vorType}] Whether the baseline numbers are ranks or points. Defaults to position ranks.
+
+\item[\code{teams}] Number of teams in the league (integer).
+
+\item[\code{format}] League format ("standard" for standard leagues or "ppr" for Point-Per-Reception leagues).
+
+\item[\code{mflMocks}] Whether to include mock drafts from MyFantasyLeague.com (MFL). Set to 1 to use only mock drafts,
+0 to use only real drafts. If not specified, all draft types will be used.
+
+\item[\code{mflLeagues}] What type of leagues to include for MyFantasyLeague.com (MFL). Set to 0 to use
+only redraft leagues; 1 to use only keeper leagues, 2 for rookie drafts, and
+3 for MFL Public Leagues. If not specified, all draft types will be used.
+
+\item[\code{ADPsource}] Character vector with one or more of \code{c("CBS", "ESPN", "FFC", "MFL", "NFL")}.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Examples}
+\begin{ExampleCode}
+getProjections(scrapeData,                    ## Based on data in scrapeData
+               avgMethod = "weighted",        ## calculate the projections using a weighted average
+               leagueScoring = scoringRules,  ## using defined scoringRules,
+               vorBaseline, vorType,          ## VOR Baselines and types
+               teams = 12, format = "ppr",    ## for a 12 team ppr league
+               mflMocks = 0, mflLeagues = 0,  ## using only real MFL redraft league
+               adpSources =  c("FFC", "MFL")) ## and ADP data from MFL and FFC
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{getRanks}{Expert Consensus Rankings}{getRanks}
+%
+\begin{Description}\relax
+Reterieve expert consensus rankings from fantasypros.com
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+getRanks(rank.position = "consensus", leagueType = "std", weekNo = 0)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{rank.position}] Position to retrieve ranks for. Use "consensus" to get
+overall rankings
+
+\item[\code{leagueType}] Indicate whether to get ppr rankings or standard rankings (std)
+
+\item[\code{weekNo}] Week number to retrieve ranks for. Use 0 for season ranks.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+\LinkA{data.table}{data.table} with up to 11 columns:
+\begin{description}
+
+\item[player] Name of player
+\item[position] Player's position
+\item[team] Team the player is playing for
+\item[ecrRank] Consensus Rank
+\item[bestRank] Highest rank from experts
+\item[worstRank] Lowest rank from experts
+\item[avgRank] Average rank from experts
+\item[sdRank] Standard deviation of ranks
+\item[adp] Average Draft Position
+\item[vsAdp] Difference between overall rank and ADP
+\item[rankType] Will have value of "overall" or "position"
+
+\end{description}
+
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{getUrls}{URLs to scrape}{getUrls}
+%
+\begin{Description}\relax
+Based on selected analysts, a given period and selected analysts generate
+URLs that will be scraped. URLs are generated as merges of the \LinkA{analysts}{analysts},
+\LinkA{sites}{sites}, \LinkA{siteUrls}{siteUrls}, and \LinkA{siteTables}{siteTables} datasets.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+getUrls(selectAnalysts = analysts$analystId,
+  period = periodType(dataPeriod()), positions = position.name)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{selectAnalysts}] An integer vector of selected analystIds.
+See \LinkA{analysts}{analysts} for possible values
+
+\item[\code{period}] A string indicating wether the URLs to produce are for weekly
+or seasonal data scrape
+
+\item[\code{positions}] A character vector of positions to scrape.
+\end{ldescription}
+\end{Arguments}
+\inputencoding{utf8}
+\HeaderA{getYahooValues}{ADP and auction value data from Yahoo}{getYahooValues}
+%
+\begin{Description}\relax
+Retrieve ADP and auction value data from Yahoo
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+getYahooValues(type = "SD")
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{type}] Draft type: AD for auction draft, SD for standard draft.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+\LinkA{data.table}{data.table} with 3 columns:
+\begin{description}
+
+\item[cbsId] Player ID from CBS. Merge with results from \LinkA{getPlayerData}{getPlayerData}
+to get player names
+\item[adp/aav] Average ADP if type = "SD"; Average auction value if type = "AD"
+\item[leagueType] Assuming standard league type
+\end{description}
+
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{mflPlayers}{Read MFL Player Data}{mflPlayers}
+%
+\begin{Description}\relax
+Function to read player data from MFL using the MFL API
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+mflPlayers(season = 2016, weekNo = 0, pos = position.name)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{season}] The year that player data is to be retrieved from
+
+\item[\code{weekNo}] The weekNo that the player data is to be retrieved from
+
+\item[\code{pos}] A character vector with position names to be retrieved
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A \LinkA{data.table}{data.table} with 10 columns
+\begin{description}
+
+\item[playerId] NFL's ID for the player
+\item[player] Name of player
+\item[yahooId] Yahoo's ID for the player
+\item[cbsId] CBS's ID for the player
+\item[mflId] MFL's ID for the player
+\item[position] The position the player is playing
+\item[team] The team the player is playing for
+\item[draftYear] The year the player was drafted
+\item[birthData] The players birth date
+\item[rookie] A logical value indicating whether the player is a rookie
+
+\end{description}
+
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{nflPlayerData}{Player Data from NFL.com}{nflPlayerData}
+%
+\begin{Description}\relax
+Retrieve player data from NFL.com
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+nflPlayerData(season = 2016, weekNo = 0, positions = position.name)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{season}] The year data is to be retrieved from
+
+\item[\code{weekNo}] The week that data is to be retrieved from
+
+\item[\code{positions}] A character vector of positions to be retrieved
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+A \LinkA{data.table}{data.table} with 7 columns:
+\begin{description}
+
+\item[playerId] NFL's ID For the player
+\item[player] Name of player
+\item[position] NFL's position designation for the player
+\item[team] NFL Team that the player is playing for
+\item[opponent] Team the player is facing next
+\item[depthChart] Number on the depth chart for the player 1 = starter
+\item[esbid] Alternate ID for player. Used for ADP/AAV data from NFL
+
+\end{description}
+
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{periodType,dataPeriod-method}{Determine if period is a week or season}{periodType,dataPeriod.Rdash.method}
+%
+\begin{Description}\relax
+Determine if period is a week or season
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+## S4 method for signature 'dataPeriod'
+periodType(object)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{x}] A dataPeriod object
+\end{ldescription}
+\end{Arguments}
+\inputencoding{utf8}
+\HeaderA{projectPoints}{Calculate points}{projectPoints}
+%
+\begin{Description}\relax
+For the scraped data, projected points, confidence interval, standard deviation
+and position ranks are calculated
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+projectPoints(projectionData, scoringRules, avgType = "average")
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{projectionData}] A \LinkA{data.table}{data.table} with projected stats
+
+\item[\code{scoringRules}] A list with tables for league scoring rules. See
+\LinkA{scoringRules}{scoringRules} for reference on format
+
+\item[\code{avgType}] Which average to use. Should be one of \code{average, robust, weighted}
+\end{ldescription}
+\end{Arguments}
+\inputencoding{utf8}
+\HeaderA{readUrl}{Read data from a URL}{readUrl}
+%
+\begin{Description}\relax
+The task for this function is to read the data from the URL location and assign
+appropriate column names. The function will throw a warning if there are
+more columns in the data table than expected. If there are fewer columns than
+expected the function will retry up to 10 times to get the number of columns
+correct. If it fails after 10 tries then an error will be thrown.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+readUrl(inpUrl, columnTypes, columnNames, whichTable, removeRow, dataType,
+  idVar, playerLinkString, fbgUser, fbgPwd)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{inpUrl}] The URL to get data from
+
+\item[\code{columnTypes}] A character vector describing the types of columns in the
+data. Note: \code{length(columnTypes) == length(columnNames)}.
+
+\item[\code{columnNames}] A character vector describing the names of the columns in
+the data. Note: \code{length(columnTypes) == length(columnNames)}.
+
+\item[\code{whichTable}] A number or character describing the table to get. This
+can be leveraged for HTML tables and spreadsheet files.
+
+\item[\code{removeRow}] A numeric vector indicating rows to skip at the top of the data.
+For exampe \code{c(1,2)} will skip the first two rows of data.
+
+\item[\code{dataType}] A character indicating the type of data (HTML, XML, file, xls)
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+Returns a \LinkA{data.table}{data.table} with data from URL.
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{redistributeValues}{Redistribute values}{redistributeValues}
+%
+\begin{Description}\relax
+Allows for the redistribution of values from \bold{one} variable to a set of
+others based on the averages. For example, the function can be used to
+redistribute total field goals to field goals per distances based of what
+the average values are for each of the field goals per distance.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+redistributeValues(valueTable = data.table(), calcType = "weighted",
+  fromVar = "fg", toVars = c("fg0019", "fg2029", "fg3039", "fg4049",
+  "fg50"), excludeAnalyst = 20)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{valueTable}] A \LinkA{data.table}{data.table}. Assumes outout from the
+\LinkA{getMeltedData}{getMeltedData} function.
+
+\item[\code{calcType}] A string specifying which calculation method to use for the
+average values
+
+\item[\code{fromVar}] A string specifying the name of the variable to distribute from
+
+\item[\code{toVars}] A character vector with the names of variables to distribute to
+
+\item[\code{excludeAnalyst}] An integer indicating an analyst to exclude. This will
+exclude the analyst from the averages
+\end{ldescription}
+\end{Arguments}
+\inputencoding{utf8}
+\HeaderA{replaceMissingData}{Find replacement data for missing values}{replaceMissingData}
+%
+\begin{Description}\relax
+For analysts that don't report on certain values the averages across other
+analysts are calculated so they can be imputed.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+replaceMissingData(statData = data.table(), calcType = "weighted")
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{statData}] A \LinkA{data.table}{data.table}. Assumes outout from the
+\LinkA{getMeltedData}{getMeltedData} function.
+
+\item[\code{calcType}] A string specifying which calculation method to use for the
+average values
+\end{ldescription}
+\end{Arguments}
+\inputencoding{utf8}
+\HeaderA{retrieveData}{Retrive data from a source table}{retrieveData}
+%
+\begin{Description}\relax
+Data can be retrieved from a source table when specified along with a source
+analyst and a data period. The data scrape will translate the data columns
+for each source table into a uniform format.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+retrieveData(srcTbl, srcPeriod, fbgUser = NULL, fbgPwd = NULL)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{srcTbl}] A \LinkA{sourceTable}{sourceTable} object representing the table to get data from
+
+\item[\code{srcPeriod}] A \LinkA{dataPeriod}{dataPeriod} object representing the period to get
+
+\item[\code{fbgUser}] User Name for an active footballguys.com account. Needed if
+data scrape is requested from Footballguys
+
+\item[\code{fbgPwd}] Password for an active footballguys.com account. Needed if
+data scrape is requested from Footballguys
+
+\item[\code{srcAnalyst}] A \LinkA{sourceAnalyst}{sourceAnalyst} object representing the analyst
+to scrape data from
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+scrapeData a scrapeData object
+\end{Value}
+\inputencoding{utf8}
+\HeaderA{runScrape}{Scrape Projections}{runScrape}
+%
+\begin{Description}\relax
+Executes a scrape of players' fantasy football projections based on the selected
+season, week, analysts, and positions. If no inputs are specified, the user is prompted.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+runScrape(season = NULL, week = NULL, analysts = NULL, positions = NULL,
+  fbgUser = NULL, fbgPwd, updatePlayers = TRUE)
+\end{verbatim}
+\end{Usage}
+%
+\begin{Arguments}
+\begin{ldescription}
+\item[\code{season}] The season of projections to scrape (e.g., 2015).
+
+\item[\code{week}] The week number of projections to scrape (e.g., 16).
+Week number should be an integer between 0 and 21.
+Week number 0 reflects seasonal projections.
+Week number between 1 and 17 reflects regular season projections.
+Week number between 18 and 21 reflects playoff projections.
+
+\item[\code{analysts}] An integer vector of analystIds specifying which analysts' projections to
+scrape. See \LinkA{analysts}{analysts} data set for values of analystIds.
+
+\item[\code{positions}] A character vector of position names specifying which positions
+to scrape: \code{c("QB", "RB", "WR", "TE", "K", "DST", "DL", "LB", "DB")}.
+\end{ldescription}
+\end{Arguments}
+%
+\begin{Value}
+list of \LinkA{dataResults}{dataResults}. One entry per position scraped.
+\end{Value}
+%
+\begin{Note}\relax
+The function has the ability to include subscription based sources,
+but you will need to either download subscription projections separately or
+provide a user name and password for those sites.
+Scraping past seasons/weeks is nearly impossible because very few if any sites
+make their historical projections available. An attempt to scrape historical
+projections will likely produce current projections in most cases.
+\end{Note}
+%
+\begin{Examples}
+\begin{ExampleCode}
+runScrape(season = 2016, week = 0,         ## Scrape 2016 season data for all
+         analysts = 99, positions = "all") ## available analysts and positions
+
+runScrape(season = 2016, week = 1,               ## Scrape 2016 week 1 data for
+         analysts = c(-1, 5),                    ## CBS Average and NFL.com
+         positions = c("QB", "RB", "WR", "TE",)) ## and offensive positions
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{Run\_Scrape}{Scrape gadget. Will be used as addin.}{Run.Rul.Scrape}
+%
+\begin{Description}\relax
+Scrape gadget. Will be used as addin.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+Run_Scrape()
+\end{verbatim}
+\end{Usage}
+\inputencoding{utf8}
+\HeaderA{scoringRules}{Default scoring rules.}{scoringRules}
+\keyword{datasets}{scoringRules}
+%
+\begin{Description}\relax
+The example below shows the default scoring rules implemented. The \code{ptsBracket}
+element is only required if you have a \code{DST} element defined. To create a
+custome scoring rule create a list with a data table for each position. Each
+data table has two columns \code{dataCol, multiplier}. The \code{dataCol} column
+is the name of the scoring variable and \code{multiplier} is the multiplier
+to be used for the scoring variable. For example, in the default scoring rule
+you can see that \code{passTds} for QB has a multiplier of 4 indicating that
+4 points is awarded per passing TD.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+scoringRules
+\end{verbatim}
+\end{Usage}
+%
+\begin{Examples}
+\begin{ExampleCode}
+scoringRules <- list(
+   QB = data.table::data.table(dataCol = c("passYds", "passTds", "passInt", "rushYds", "rushTds", "twoPts", "fumbles"),
+                               multiplier = c(1/25, 4, -3, 1/10, 6, 2, -3 )),
+   RB = data.table::data.table(dataCol = c("rushYds", "rushTds", "rec", "recYds", "recTds", "returnTds", "twoPts", "fumbles"),
+                               multiplier = c(1/10, 6, 0, 1/8, 6, 6, 2, -3)),
+   WR = data.table::data.table(dataCol = c("rushYds", "rushTds", "rec", "recYds", "recTds", "returnTds", "twoPts", "fumbles"),
+                               multiplier = c(1/10, 6, 0, 1/8, 6, 6, 2, -3)),
+   TE = data.table::data.table(dataCol = c("rushYds", "rushTds", "rec", "recYds", "recTds", "returnTds", "twoPts", "fumbles"),
+                               multiplier = c(1/10, 6, 0, 1/8, 6, 6, 2, -3)),
+   K = data.table::data.table(dataCol = c("xp", "fg0019", "fg2029", "fg3039", "fg4049", "fg50"),
+                              multiplier = c(1,  3, 3, 3, 4, 5)),
+   DST = data.table::data.table(dataCol = c("dstFumlRec", "dstInt", "dstSafety", "dstSack", "dstTd", "dstBlk"),
+                                multiplier = c(2, 2, 2, 1, 6, 1.5)),
+   DL = data.table::data.table(dataCol = c("idpSolo", "idpAst", "idpSack", "idpInt", "idpFumlForce", "idpFumlRec", "idpPD", "idpTd", "idpSafety"),
+                               multiplier = c(1, 0.5, 2, 3, 3, 2, 1, 6, 2)),
+   LB =  data.table::data.table(dataCol = c("idpSolo", "idpAst", "idpSack", "idpInt", "idpFumlForce", "idpFumlRec", "idpPD", "idpTd", "idpSafety"),
+                                multiplier = c(1, 0.5, 2, 3, 3, 2, 1, 6, 2)),
+   DB = data.table::data.table(dataCol = c("idpSolo", "idpAst", "idpSack", "idpInt", "idpFumlForce", "idpFumlRec", "idpPD", "idpTd", "idpSafety"),
+                               multiplier = c(1, 0.5, 2, 3, 3, 2, 1, 6, 2)),
+   ptsBracket = data.table::data.table(threshold = c(0, 6, 20, 34, 99),
+                                       points = c(10, 7, 4, 0, -4))
+)
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{setTier}{Set tiers based on thresholds}{setTier}
+%
+\begin{Description}\relax
+Set tiers based on thresholds
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+setTier(points, position)
+\end{verbatim}
+\end{Usage}
+\inputencoding{utf8}
+\HeaderA{sites}{Site data}{sites}
+\keyword{datasets}{sites}
+%
+\begin{Description}\relax
+Data table with information on sites that are being used for datascrapes.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+sites
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+A data.table with 17 rows and 5 columns
+\begin{description}
+
+\item[siteId] Unique integer identifier for the site
+\item[siteName] The name of the site
+\item[subscription] Indicator whether the site requires subscription to get
+to the data
+\item[playerId] Name of column in the player data table that holds the id
+for the players
+
+\end{description}
+\end{Format}
+\inputencoding{utf8}
+\HeaderA{siteTables}{Table information}{siteTables}
+\keyword{datasets}{siteTables}
+%
+\begin{Description}\relax
+Data table with information on tables that data will be scraped from.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+siteTables
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+A \LinkA{data.table}{data.table} with 111 rows and 9 columns.
+\begin{description}
+
+\item[tableId] An integer that uniquely identifies the table
+\item[position] Name of the position that the table holds data for
+\item[positionAlias] The position identifier used in the URL for the table
+\item[siteId] Integer identfying the site that the table is found on. See
+\LinkA{sites}{sites} for values
+\item[startPage] If the table spans more pages then the start number for the
+pages. If all the data is on one page the value is 1.
+\item[endPage] If the table spans more pages then the end number for the page
+sequence. If all the data is on one page the value is 1
+\item[stepPage] If the table spans more page then the step number of the page
+sequence. If all the data is on one page the value is 1
+\item[season] Indicates whether the table can be used for seasonal data scrapes.
+\item[weekly] Indicates whether the table can be used for weekly data scrapes.
+
+\end{description}
+\end{Format}
+\inputencoding{utf8}
+\HeaderA{siteUrls}{URL information}{siteUrls}
+\keyword{datasets}{siteUrls}
+%
+\begin{Description}\relax
+Data table with information on the URLs that data will be scraped from.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+siteUrls
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+A \LinkA{data.table}{data.table} with 31 rows and 7 columns.
+\begin{description}
+
+\item[siteId] An integer identifying the site the URL is referring to. See
+\LinkA{sites}{sites} for values.
+\item[siteUrl] The URL that the data will be scraped from. Use placeholders
+for parameters that needs to be substituted, like position, analyst, page,
+season and week.
+\item[urlPeriod] Specifies whether the URL is used for week or season data.
+\item[urlType] Specifies the data type that is returned from the URL. Could be
+HTML, XML, csv or file
+\item[urlTable] The table number that the data scrape should read from the
+URL. Mostly used for HTML data, but can also be used to designate sheets in
+a spreadsheet file.
+\item[playerLink] A string to identify the links to player profile pages on
+an HTML page.
+
+\end{description}
+\end{Format}
+\inputencoding{utf8}
+\HeaderA{sourceAnalyst-class}{Class to represent the source Analysts}{sourceAnalyst.Rdash.class}
+\aliasA{sourceAnalyst}{sourceAnalyst-class}{sourceAnalyst}
+%
+\begin{Description}\relax
+Class to represent the source Analysts
+\end{Description}
+%
+\begin{Section}{Slots}
+
+\begin{description}
+
+\item[\code{analystName}] The name of the analysts
+
+\item[\code{sourceId}] The id for the source. This is only used if there are multiple
+analysts for a site
+
+\item[\code{analystId}] A character string specifying the id to be used for the analyst.
+If left blank, it will be set as a 4 letter abbreviation of the site + analyst
+names using \LinkA{abbreviate}{abbreviate}.
+
+\end{description}
+\end{Section}
+%
+\begin{Examples}
+\begin{ExampleCode}
+cbs.avg <- sourceAnalyst(analystName = "Average",
+                         sourceId = "avg",
+                         analystId = "cbav")
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{sourceSite-class}{Class to represent source sites}{sourceSite.Rdash.class}
+\aliasA{sourceSite}{sourceSite-class}{sourceSite}
+%
+\begin{Description}\relax
+Source sites are one of the foundations to the data scrapes. They are
+representing the web sites that provides data for the projections. The
+sources can be different for weekly and seasonal data and the type of
+data can be different. If the data is scraped from HTML then the playerId
+can be derived as well.
+\end{Description}
+%
+\begin{Section}{Slots}
+
+\begin{description}
+
+\item[\code{siteId}] The ID for the site as identfied in configuration data
+
+\item[\code{siteName}] Name of source site
+
+\item[\code{siteUrl}] String that represents the URL that the site uses for the seasonal data, if any.
+
+\item[\code{urlType}] String that identifies the type of data in  seasonURL (HTML, XML, CSV or file)
+
+\item[\code{urlTable}] A character string identifying which table to grab from seasonURL
+
+\item[\code{playerLink}] A string representing part of the URL to a player profile
+
+\item[\code{playerId}] What to call the id number for player if present
+
+\end{description}
+\end{Section}
+%
+\begin{Note}\relax
+When specifying the URLs paramters can be used as place holders.
+\end{Note}
+%
+\begin{Examples}
+\begin{ExampleCode}
+sourceSite(siteName = "CBS",
+           siteUrl = "http://www.cbssports.com/fantasy/football/stats/weeklyprojections/{$Pos}/season/{$SrcID}/standard?&print_rows=9999",
+           urlType = "html",
+           urlTable = "1",
+           playerLink = "/fantasyfootball/players/playerpage/[0-9]{3,6}",
+           playerId = "cbsId")
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{sourceTable-class}{Class to represent a data table from a source site}{sourceTable.Rdash.class}
+\aliasA{sourceTable}{sourceTable-class}{sourceTable}
+%
+\begin{Description}\relax
+Source table class extends the \LinkA{sourceAnalyst}{sourceAnalyst} class
+\end{Description}
+%
+\begin{Section}{Slots}
+
+\begin{description}
+
+\item[\code{sourcePosition}] The position designation that the table represents
+
+\item[\code{positionAlias}] The designation that the source site uses for the position
+
+\item[\code{startPage}] If the table covers multiple pages, the start numbering for the
+pages. Otherwise 1
+
+\item[\code{endPage}] If the table covers multiple pages, the end numbering for the
+pages. Otherwise 1
+
+\item[\code{stepPage}] If the table covers multiple pages, the step in the sequence of
+page numbering. Otherwise 1
+
+\item[\code{tableId}] ID from configuration data that identifies the table uniquely
+
+\end{description}
+\end{Section}
+%
+\begin{Examples}
+\begin{ExampleCode}
+cbs.qb <- sourceTable(sourcePosition = "QB",
+                      positionAlias = "QB",
+                      startPage = 1,
+                      endPage = 1,
+                      stepPage = 1,
+                      tableId = 1
+                     )
+\end{ExampleCode}
+\end{Examples}
+\inputencoding{utf8}
+\HeaderA{tableColumns}{Constants defining result columns}{tableColumns}
+\aliasA{resultColumns}{tableColumns}{resultColumns}
+\aliasA{staticColumns}{tableColumns}{staticColumns}
+\keyword{datasets}{tableColumns}
+%
+\begin{Description}\relax
+The results in the \LinkA{dataResult}{dataResult.Rdash.class} table are determined by the values in
+these constants. See definitiions in details.
+\begin{description}
+
+\item[staticColumns] Names of columns in all result tables.
+\item[resultColums] A list of character vectors (one per position), indicating
+the columns in the results table for that position.
+
+\end{description}
+
+
+Data table with information on the columns in tables identified in \LinkA{siteTables}{siteTables}.
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+staticColumns
+
+resultColumns
+
+tableColumns
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+A \LinkA{data.table}{data.table} with 2924 rows and 6 columns.
+\begin{description}
+
+\item[tableId] An integer identifying the table that the column belongs to.
+See \LinkA{siteTables}{siteTables} for values
+\item[columnName] The name of the column
+\item[columnType] The data type for the column
+\item[columnOrder] The order in which the column appears in the table
+\item[columnPeriod] Indicates if the column appears in tables used for seasonal
+or weekly data scrapes
+\item[removeColumn] Indicates if the column can be removed before the table
+is returned.
+
+\end{description}
+\end{Format}
+\inputencoding{utf8}
+\HeaderA{tableRowRemove}{Table rows to remove}{tableRowRemove}
+\keyword{datasets}{tableRowRemove}
+%
+\begin{Description}\relax
+Data table with information on rows that will need to be removed from \LinkA{siteTables}{siteTables}
+for the data scrape to be succesfull
+\end{Description}
+%
+\begin{Usage}
+\begin{verbatim}
+tableRowRemove
+\end{verbatim}
+\end{Usage}
+%
+\begin{Format}
+A \LinkA{data.table}{data.table} with 28 rows and 2 columns.
+\begin{description}
+
+\item[tableId] An integer identifying the table that the row can be removed from.
+See \LinkA{siteTables}{siteTables} for values
+\item[rowRemove] An integer identifying the row that can be removed
+
+\end{description}
+\end{Format}
+\printindex{}
+\end{document}

@@ -1,0 +1,95 @@
+
+R version 4.0.2 (2020-06-22) -- "Taking Off Again"
+Copyright (C) 2020 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "ffanalytics"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> options(pager = "console")
+> library('ffanalytics')
+Loading required package: shiny
+Loading required package: miniUI
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("dataPeriod-class")
+> ### * dataPeriod-class
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: dataPeriod-class
+> ### Title: Class to represent the period for a datascrape
+> ### Aliases: dataPeriod dataPeriod-class
+> 
+> ### ** Examples
+> 
+> dataPeriod(weekNo = 1, season = 2015) # Week 1 of the 2015 season
+weekNo season 
+     1   2015 
+> dataPeriod(season = 2015)             # 2015 season
+weekNo season 
+     0   2015 
+> dataPeriod(weekNo = 3)                # Week 3 of the current year
+weekNo season 
+     3   2020 
+> dataPeriod()                          # Current season
+weekNo season 
+     0   2020 
+> 
+> 
+> 
+> cleanEx()
+> nameEx("firstLast")
+> ### * firstLast
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: firstLast
+> ### Title: Reverse Last and First Name
+> ### Aliases: firstLast
+> 
+> ### ** Examples
+> 
+> firstLast("Smith, John") # Will return John Smith
+[1] "John Smith"
+> 
+> 
+> 
+> cleanEx()
+> nameEx("getProjections")
+> ### * getProjections
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: getProjections
+> ### Title: Calculate Projected Points
+> ### Aliases: getProjections
+> 
+> ### ** Examples
+> 
+> getProjections(scrapeData,                    ## Based on data in scrapeData
++                avgMethod = "weighted",        ## calculate the projections using a weighted average
++                leagueScoring = scoringRules,  ## using defined scoringRules,
++                vorBaseline, vorType,          ## VOR Baselines and types
++                teams = 12, format = "ppr",    ## for a 12 team ppr league
++                mflMocks = 0, mflLeagues = 0,  ## using only real MFL redraft league
++                adpSources =  c("FFC", "MFL")) ## and ADP data from MFL and FFC
+Error in getProjections(scrapeData, avgMethod = "weighted", leagueScoring = scoringRules,  : 
+  object 'scrapeData' not found
+Execution halted

@@ -1,0 +1,640 @@
+* using log directory 'C:/Users/Poppa/Documents/GitHub/FantasyFootballAnalyticsR/R Package/ffanalytics.Rcheck'
+* using R version 4.0.2 (2020-06-22)
+* using platform: x86_64-w64-mingw32 (64-bit)
+* using session charset: ISO8859-1
+* checking for file 'ffanalytics/DESCRIPTION' ... OK
+* checking extension type ... Package
+* this is package 'ffanalytics' version '0.1.91'
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .httr-oauth
+These were most likely included in error. See section 'Package
+structure' in the 'Writing R Extensions' manual.
+* checking for portable file names ... OK
+* checking whether package 'ffanalytics' can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... WARNING
+'::' or ':::' imports not declared from:
+  'mclust' 'rstudioapi'
+Packages in Depends field not imported from:
+  'miniUI' 'shiny'
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+package 'methods' is used but not declared
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+Run_Projection: no visible binding for global variable 'analysts'
+Run_Projection: no visible binding for global variable 'siteId'
+Run_Projection: no visible binding for global variable 'sites'
+Run_Projection: no visible binding for global variable 'siteName'
+Run_Projection: no visible global function definition for 'miniPage'
+Run_Projection: no visible global function definition for
+  'gadgetTitleBar'
+Run_Projection: no visible global function definition for
+  'miniTabstripPanel'
+Run_Projection: no visible global function definition for
+  'miniTabPanel'
+Run_Projection: no visible global function definition for 'icon'
+Run_Projection: no visible global function definition for
+  'miniContentPanel'
+Run_Projection: no visible global function definition for 'fillCol'
+Run_Projection: no visible global function definition for 'fillRow'
+Run_Projection: no visible global function definition for 'selectInput'
+Run_Projection: no visible global function definition for
+  'miniButtonBlock'
+Run_Projection: no visible global function definition for
+  'actionButton'
+Run_Projection: no visible global function definition for 'uiOutput'
+Run_Projection: no visible global function definition for
+  'checkboxGroupInput'
+Run_Projection: no visible global function definition for
+  'numericInput'
+Run_Projection : server: no visible global function definition for
+  'reactive'
+Run_Projection : server: no visible global function definition for
+  'renderUI'
+Run_Projection : server: no visible global function definition for
+  'checkboxGroupInput'
+Run_Projection : server: no visible global function definition for
+  'req'
+Run_Projection : server: no visible binding for global variable 'tags'
+Run_Projection : server: no visible global function definition for
+  'textInput'
+Run_Projection : server: no visible global function definition for
+  'passwordInput'
+Run_Projection : server: no visible binding for global variable
+  'analystPositions'
+Run_Projection : server: no visible binding for global variable
+  'analystId'
+Run_Projection : server: no visible binding for global variable
+  'season'
+Run_Projection : server: no visible binding for global variable
+  'weekly'
+Run_Projection : server: no visible global function definition for
+  'observeEvent'
+Run_Projection : server: no visible global function definition for
+  'updateCheckboxGroupInput'
+Run_Projection : server: no visible binding for global variable 'sites'
+Run_Projection : server: no visible binding for global variable
+  'subscription'
+Run_Projection : server: no visible binding for global variable
+  'analysts'
+Run_Projection : server: no visible binding for global variable
+  'siteId'
+Run_Projection : server : getScoringRules: no visible binding for
+  global variable 'threshold'
+Run_Projection : server: no visible binding for '<<-' assignment to
+  'userScoring'
+Run_Projection : server: no visible global function definition for
+  'stopApp'
+Run_Projection: no visible global function definition for 'runGadget'
+Run_Projection: no visible global function definition for
+  'dialogViewer'
+Run_Scrape: no visible binding for global variable 'analysts'
+Run_Scrape: no visible binding for global variable 'siteId'
+Run_Scrape: no visible binding for global variable 'sites'
+Run_Scrape: no visible binding for global variable 'siteName'
+Run_Scrape: no visible global function definition for 'miniPage'
+Run_Scrape: no visible global function definition for 'gadgetTitleBar'
+Run_Scrape: no visible global function definition for
+  'miniContentPanel'
+Run_Scrape: no visible global function definition for 'fillCol'
+Run_Scrape: no visible global function definition for 'fillRow'
+Run_Scrape: no visible global function definition for 'selectInput'
+Run_Scrape: no visible global function definition for 'miniButtonBlock'
+Run_Scrape: no visible global function definition for 'actionButton'
+Run_Scrape: no visible global function definition for 'uiOutput'
+Run_Scrape: no visible global function definition for
+  'checkboxGroupInput'
+Run_Scrape : server: no visible global function definition for
+  'reactive'
+Run_Scrape : server: no visible global function definition for
+  'checkboxGroupInput'
+Run_Scrape : server: no visible global function definition for
+  'renderUI'
+Run_Scrape : server: no visible global function definition for 'req'
+Run_Scrape : server: no visible binding for global variable 'tags'
+Run_Scrape : server: no visible global function definition for
+  'textInput'
+Run_Scrape : server: no visible global function definition for
+  'passwordInput'
+Run_Scrape : server: no visible global function definition for
+  'observeEvent'
+Run_Scrape : server: no visible global function definition for
+  'updateCheckboxGroupInput'
+Run_Scrape : server: no visible binding for global variable 'sites'
+Run_Scrape : server: no visible binding for global variable
+  'subscription'
+Run_Scrape : server: no visible binding for global variable 'analysts'
+Run_Scrape : server: no visible binding for global variable 'siteId'
+Run_Scrape : server: no visible global function definition for
+  'stopApp'
+Run_Scrape: no visible global function definition for 'runGadget'
+analystOptions: no visible binding for global variable 'analysts'
+analystOptions: no visible binding for global variable 'season'
+analystOptions: no visible binding for global variable 'weekly'
+analystOptions: no visible binding for global variable 'siteId'
+analystOptions: no visible binding for global variable 'siteUrls'
+analystOptions: no visible binding for global variable 'sites'
+analystOptions: no visible binding for global variable 'listName'
+analystOptions: no visible binding for global variable 'siteName'
+analystOptions: no visible binding for global variable 'analystName'
+analystOptions: no visible binding for global variable 'analystId'
+avgValue : wilcox.loc: no visible global function definition for
+  'combn'
+avgValue : wilcox.loc: no visible global function definition for
+  'median'
+avgValue: no visible binding for global variable 'weighted.mean'
+calcStdDev: no visible binding for global variable 'sd'
+calcStdDev: no visible binding for global variable 'mad'
+calculatePoints : dstPts: no visible binding for global variable
+  'threshold'
+calculatePoints : <anonymous>: no visible binding for global variable
+  'position'
+calculatePoints: no visible binding for global variable 'dataCol'
+calculatePoints: no visible binding for global variable 'multiplier'
+calculatePoints: no visible binding for global variable 'position'
+calculatePoints: no visible global function definition for '.'
+calculatePoints: no visible binding for global variable 'points'
+calculatePoints: no visible binding for global variable 'value'
+confidenceInterval: no visible binding for global variable 'quantile'
+createObject: no visible global function definition for 'slotNames'
+dataGadget: no visible global function definition for 'miniPage'
+dataGadget: no visible global function definition for 'gadgetTitleBar'
+dataGadget: no visible global function definition for
+  'miniContentPanel'
+dataGadget: no visible global function definition for 'selectInput'
+dataGadget : server: no visible binding for global variable 'playerId'
+dataGadget : server: no visible binding for global variable 'Name'
+dataGadget : server: no visible binding for global variable 'player'
+dataGadget : server: no visible binding for global variable 'position'
+dataGadget : server: no visible binding for global variable
+  'positionRank'
+dataGadget : server: no visible binding for global variable 'team'
+dataGadget : server: no visible global function definition for
+  'observeEvent'
+dataGadget : server: no visible global function definition for
+  'stopApp'
+dataGadget: no visible global function definition for 'runGadget'
+dataGadget: no visible global function definition for 'dialogViewer'
+dataPeriod: no visible global function definition for 'new'
+dataResult: no visible global function definition for 'new'
+dualPositionData: no visible global function definition for 'combn'
+dualPositionData : <anonymous>: no visible binding for global variable
+  'playerId'
+dualPositionData : <anonymous>: no visible binding for global variable
+  'analyst'
+dualPositionData : <anonymous>: no visible binding for global variable
+  'position'
+getAAVdata: no visible binding for global variable 'playerData'
+getAAVdata: no visible binding for global variable 'position'
+getAAVdata: no visible binding for global variable 'esbid'
+getAAVdata: no visible binding for global variable 'mflId'
+getAAVdata: no visible binding for global variable 'aav'
+getAAVdata: no visible global function definition for '.'
+getADPdata: no visible binding for global variable 'playerData'
+getADPdata: no visible binding for global variable 'cbsId'
+getADPdata: no visible binding for global variable 'position'
+getADPdata: no visible binding for global variable 'esbid'
+getADPdata: no visible binding for global variable 'mflId'
+getADPdata: no visible binding for global variable 'adp'
+getADPdata: no visible global function definition for '.'
+getCBSValues: no visible binding for global variable 'player'
+getCBSValues: no visible binding for global variable 'cbsId'
+getCBSValues: no visible binding for global variable 'leagueType'
+getDraftData: no visible binding for global variable 'playerData'
+getDraftData: no visible binding for global variable 'cbsId'
+getDraftData: no visible binding for global variable 'position'
+getDraftData: no visible binding for global variable 'esbid'
+getDraftData: no visible binding for global variable 'mflId'
+getDraftData: no visible binding for global variable 'yahooId'
+getDraftData: no visible binding for global variable 'aav'
+getDraftData: no visible binding for global variable 'adp'
+getDraftData: no visible global function definition for '.'
+getESPNValues : <anonymous>: no visible binding for global variable
+  'player'
+getESPNValues : <anonymous>: no visible binding for global variable
+  'position'
+getESPNValues : <anonymous>: no visible binding for global variable
+  'leagueType'
+getESPNValues: no visible binding for global variable 'position'
+getESPNValues: no visible binding for global variable 'team'
+getESPNValues: no visible binding for global variable 'player'
+getFFCValues: no visible global function definition for 'read.csv'
+getFFCValues: no visible binding for global variable 'Name'
+getFFCValues: no visible binding for global variable 'ADP'
+getFFCValues: no visible binding for global variable 'leagueType'
+getFFCValues: no visible binding for global variable 'adp'
+getNFLValues: no visible binding for global variable 'player'
+getNFLValues: no visible binding for global variable 'firstName'
+getNFLValues: no visible binding for global variable 'lastName'
+getNFLValues: no visible binding for global variable 'position'
+getPlayerData: no visible binding for global variable 'playerId'
+getPlayerData: no visible binding for global variable 'playerId_nfl'
+getProjections: no visible binding for global variable 'analysts'
+getProjections: no visible binding for global variable 'analystId'
+getProjections: no visible binding for global variable 'position'
+getProjections: no visible binding for global variable 'analyst'
+getProjections: no visible binding for global variable 'dataCol'
+getProjections: no visible binding for global variable 'value'
+getProjections: no visible binding for global variable 'value_new'
+getProjections: no visible binding for global variable 'replValue'
+getProjections: no visible binding for global variable 'vor'
+getProjections: no visible binding for global variable 'positionRank'
+getProjections: no visible binding for global variable 'points'
+getProjections: no visible binding for global variable 'overallRank'
+getProjections: no visible binding for global variable 'playerId'
+getProjections: no visible binding for global variable 'adpDiff'
+getProjections: no visible binding for global variable 'adp'
+getProjections: no visible binding for global variable 'playerData'
+getProjections: no visible binding for global variable 'draftYear'
+getProjections: no visible binding for global variable 'risk'
+getProjections: no visible binding for global variable 'sdPts'
+getProjections: no visible binding for global variable 'sdRank'
+getProjections: no visible global function definition for 'write.csv'
+getProjections: no visible global function definition for 'as.formula'
+getRanks: no visible binding for global variable 'position'
+getRanks: no visible binding for global variable 'rankType'
+getRanks: no visible binding for global variable 'team'
+getRanks: no visible binding for global variable 'player'
+getRanks: no visible binding for global variable 'ecrRank'
+getUrls: no visible binding for global variable 'analysts'
+getUrls: no visible binding for global variable 'analystPositions'
+getUrls: no visible binding for global variable 'sites'
+getUrls: no visible binding for global variable 'siteUrls'
+getUrls: no visible binding for global variable 'siteTables'
+getUrls: no visible binding for global variable 'analystId'
+getUrls: no visible binding for global variable 'urlPeriod'
+getUrls: no visible binding for global variable 'sourcePosition'
+getUrls: no visible binding for global variable 'positionId'
+getUrls: no visible binding for global variable 'siteId'
+getUrls: no visible global function definition for 'slotNames'
+getYahooDraftData : <anonymous>: no visible binding for global variable
+  'yahooId'
+getYahooDraftData: no visible binding for global variable 'adp'
+getYahooDraftData: no visible binding for global variable 'aav'
+getYahooPlayerStats : <anonymous>: no visible binding for global
+  variable 'team'
+getYahooPlayerStats : <anonymous>: no visible binding for global
+  variable 'editorial_team_abbr'
+getYahooPlayerStats : <anonymous>: no visible binding for global
+  variable 'stat_id'
+getYahooPlayerStats: no visible binding for global variable 'team'
+getYahooValues : <anonymous>: no visible binding for global variable
+  'position'
+getYahooValues: no visible binding for global variable 'aav'
+getYahooValues: no visible binding for global variable 'avgCost'
+getYahooValues: no visible binding for global variable 'leagueType'
+mflPlayers: no visible binding for global variable 'nfl_id'
+mflPlayers: no visible binding for global variable 'team'
+mflPlayers: no visible binding for global variable 'position'
+mflPlayers: no visible binding for global variable 'player'
+mflPlayers: no visible binding for global variable 'birthdate'
+mflPlayers: no visible binding for global variable 'rookie'
+mflPlayers: no visible binding for global variable 'cbsId'
+mflPlayers: no visible binding for global variable 'mflId'
+nflPlayerData: no visible binding for global variable 'player'
+nflPlayerData: no visible binding for global variable 'firstName'
+nflPlayerData: no visible binding for global variable 'lastName'
+nflPlayerData: no visible binding for global variable 'playerId'
+nflPlayerData: no visible binding for global variable 'position'
+nflPlayerData: no visible binding for global variable 'team'
+nflPlayerData: no visible binding for global variable 'opponent'
+nflPlayerData: no visible binding for global variable 'depthChart'
+nflPlayerData: no visible binding for global variable 'esbid'
+projectPoints: no visible global function definition for '.'
+projectPoints: no visible binding for global variable 'value'
+projectPoints: no visible binding for global variable 'weight'
+projectPoints: no visible binding for global variable 'points'
+projectPoints: no visible binding for global variable 'positionRank'
+projectPoints: no visible binding for global variable 'dropoff'
+projectPoints: no visible binding for global variable 'tier'
+projectPoints: no visible binding for global variable 'playerId'
+readNMFdata: no visible binding for global variable 'V3'
+readNMFdata: no visible binding for global variable 'V4'
+readNMFdata: no visible binding for global variable 'V1'
+readUrl: no visible global function definition for 'download.file'
+readUrl: no visible global function definition for 'read.csv'
+readUrl: no visible binding for global variable 'position'
+readUrl: no visible binding for global variable 'player'
+readUrl: no visible binding for global variable 'firstName'
+readUrl: no visible binding for global variable 'lastName'
+readUrl: no visible binding for global variable 'team'
+redistributeValues: no visible binding for global variable 'analysts'
+redistributeValues: no visible binding for global variable 'dataCol'
+redistributeValues: no visible global function definition for '.'
+redistributeValues: no visible binding for global variable 'totalVar'
+redistributeValues: no visible binding for global variable 'totalValue'
+redistributeValues: no visible binding for global variable 'varShare'
+redistributeValues: no visible binding for global variable 'value'
+refresh_token: no visible global function definition for 'URLdecode'
+replaceMissingData: no visible binding for global variable 'analysts'
+replaceMissingData: no visible global function definition for '.'
+replaceMissingData: no visible binding for global variable 'missTest'
+replaceMissingData: no visible binding for global variable 'replValue'
+retrieveData: no visible global function definition for 'is'
+retrieveData: no visible binding for global variable 'tableColumns'
+retrieveData: no visible binding for global variable 'tableId'
+retrieveData: no visible binding for global variable 'columnPeriod'
+retrieveData: no visible binding for global variable 'columnOrder'
+retrieveData: no visible binding for global variable 'tableRowRemove'
+retrieveData: no visible binding for global variable 'passComp'
+retrieveData: no visible binding for global variable 'passCompAtt'
+retrieveData: no visible binding for global variable 'passAtt'
+retrieveData: no visible binding for global variable 'passInc'
+retrieveData: no visible binding for global variable 'passCompPct'
+retrieveData: no visible binding for global variable 'dstBlk'
+retrieveData: no visible binding for global variable 'dstBlkFg'
+retrieveData: no visible binding for global variable 'dstBlkPunt'
+retrieveData: no visible binding for global variable 'dstBlkPAT'
+retrieveData: no visible binding for global variable 'dstRetTd'
+retrieveData: no visible binding for global variable 'dstPuntRetTds'
+retrieveData: no visible binding for global variable 'dstKickRetTds'
+retrieveData: no visible binding for global variable 'returnYds'
+retrieveData: no visible binding for global variable 'kickRetYds'
+retrieveData: no visible binding for global variable 'puntRetYds'
+retrieveData: no visible binding for global variable 'dstYdsAllowed'
+retrieveData: no visible binding for global variable 'dstPassYdsPerGm'
+retrieveData: no visible binding for global variable 'dstRushYdsPerGm'
+retrieveData: no visible binding for global variable 'dstPtsPerGm'
+retrieveData: no visible binding for global variable 'dstYdsPerGm'
+retrieveData: no visible binding for global variable 'fg'
+retrieveData: no visible binding for global variable 'fg0019'
+retrieveData: no visible binding for global variable 'fg2029'
+retrieveData: no visible binding for global variable 'fg3039'
+retrieveData: no visible binding for global variable 'fg4049'
+retrieveData: no visible binding for global variable 'fg50'
+retrieveData: no visible binding for global variable 'fgAtt'
+retrieveData: no visible binding for global variable 'fgMiss'
+retrieveData: no visible binding for global variable 'games'
+retrieveData: no visible binding for global variable 'analyst'
+retrieveData: no visible binding for global variable 'playerId'
+retrieveData: no visible binding for global variable 'position'
+retrieveData: no visible binding for global variable 'player'
+retrieveData: no visible binding for global variable 'team'
+runScrape: no visible global function definition for 'select.list'
+runScrape: no visible binding for global variable 'analystPositions'
+runScrape: no visible binding for '<<-' assignment to 'playerData'
+runScrape: no visible binding for global variable 'winProgressBar'
+runScrape: no visible binding for global variable 'setWinProgressBar'
+runScrape: no visible binding for global variable 'getWinProgressBar'
+runScrape : <anonymous>: no visible binding for global variable
+  'position'
+runScrape : <anonymous>: no visible binding for global variable
+  'failure'
+scoringUI : <anonymous>: no visible global function definition for
+  'fluidRow'
+scoringUI : <anonymous>: no visible global function definition for
+  'tagList'
+scoringUI : <anonymous> : <anonymous>: no visible global function
+  definition for 'column'
+scoringUI : <anonymous> : <anonymous>: no visible binding for global
+  variable 'tags'
+scoringUI : <anonymous> : <anonymous> : <anonymous>: no visible global
+  function definition for 'textInput'
+scoringUI : <anonymous>: no visible global function definition for
+  'column'
+scoringUI : <anonymous>: no visible binding for global variable 'tags'
+scoringUI : <anonymous> : <anonymous>: no visible global function
+  definition for 'fluidRow'
+scoringUI : <anonymous> : <anonymous>: no visible global function
+  definition for 'textInput'
+scrapeJSONdata : <anonymous>: no visible binding for global variable
+  'stats'
+scrapeJSONdata : <anonymous>: no visible binding for global variable
+  'playerId'
+scrapeJSONdata : <anonymous>: no visible binding for global variable
+  'player'
+scrapeJSONdata : <anonymous>: no visible binding for global variable
+  'team'
+sourceAnalyst: no visible global function definition for 'new'
+sourceSite: no visible global function definition for 'new'
+sourceTable: no visible global function definition for 'new'
+tableMerge: no visible binding for global variable 'playerId'
+tierFunction : cohens_d: no visible global function definition for
+  'var'
+tierFunction: no visible global function definition for '.'
+tierFunction: no visible binding for global variable 'numObs'
+updateFieldGoals: no visible binding for global variable 'fg'
+updateFieldGoals: no visible binding for global variable 'fgMiss'
+updateFieldGoals: no visible binding for global variable 'fg.Miss'
+updateFieldGoals: no visible binding for global variable 'fg_check'
+updateFieldGoals: no visible binding for global variable 'fgAtt'
+vorUI : <anonymous>: no visible global function definition for
+  'fluidRow'
+vorUI : <anonymous>: no visible global function definition for
+  'tagList'
+vorUI : <anonymous> : <anonymous>: no visible global function
+  definition for 'column'
+vorUI : <anonymous> : <anonymous>: no visible binding for global
+  variable 'tags'
+vorUI : <anonymous> : <anonymous>: no visible global function
+  definition for 'textInput'
+vorUI : <anonymous> : <anonymous>: no visible global function
+  definition for 'radioButtons'
+[<-,dataPeriod-ANY-ANY-ANY: no visible global function definition for
+  'validObject'
+[<-,sourceAnalyst-ANY-ANY-ANY: no visible global function definition
+  for 'validObject'
+[<-,sourceSite-ANY-ANY-ANY: no visible global function definition for
+  'validObject'
+[<-,sourceTable-ANY-ANY-ANY: no visible global function definition for
+  'validObject'
+Undefined global functions or variables:
+  . ADP Name URLdecode V1 V3 V4 aav actionButton adp adpDiff analyst
+  analystId analystName analystPositions analysts as.formula avgCost
+  birthdate cbsId checkboxGroupInput column columnOrder columnPeriod
+  combn dataCol depthChart dialogViewer download.file draftYear dropoff
+  dstBlk dstBlkFg dstBlkPAT dstBlkPunt dstKickRetTds dstPassYdsPerGm
+  dstPtsPerGm dstPuntRetTds dstRetTd dstRushYdsPerGm dstYdsAllowed
+  dstYdsPerGm ecrRank editorial_team_abbr esbid failure fg fg.Miss
+  fg0019 fg2029 fg3039 fg4049 fg50 fgAtt fgMiss fg_check fillCol
+  fillRow firstName fluidRow gadgetTitleBar games getWinProgressBar
+  icon is kickRetYds lastName leagueType listName mad median mflId
+  miniButtonBlock miniContentPanel miniPage miniTabPanel
+  miniTabstripPanel missTest multiplier new nfl_id numObs numericInput
+  observeEvent opponent overallRank passAtt passComp passCompAtt
+  passCompPct passInc passwordInput player playerData playerId
+  playerId_nfl points position positionId positionRank puntRetYds
+  quantile radioButtons rankType reactive read.csv renderUI replValue
+  req returnYds risk rookie runGadget sd sdPts sdRank season
+  select.list selectInput setWinProgressBar siteId siteName siteTables
+  siteUrls sites slotNames sourcePosition stat_id stats stopApp
+  subscription tableColumns tableId tableRowRemove tagList tags team
+  textInput threshold tier totalValue totalVar uiOutput
+  updateCheckboxGroupInput urlPeriod validObject value value_new var
+  varShare vor weekly weight weighted.mean winProgressBar write.csv
+  yahooId
+Consider adding
+  importFrom("graphics", "points")
+  importFrom("methods", "is", "new", "slotNames", "validObject")
+  importFrom("stats", "as.formula", "mad", "median", "quantile", "sd",
+             "var", "weighted.mean")
+  importFrom("utils", "URLdecode", "combn", "download.file",
+             "getWinProgressBar", "read.csv", "select.list",
+             "setWinProgressBar", "winProgressBar", "write.csv")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... WARNING
+Missing link or links in documentation object 'calculateVor.Rd':
+  'vorBaseline' 'vorAdjustment'
+
+Missing link or links in documentation object 'runScrape.Rd':
+  'dataResults'
+
+See section 'Cross-references' in the 'Writing R Extensions' manual.
+
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  'Run_Projection' 'adjustAAV' 'dataColumns' 'dualPositionData'
+  'extractTeam' 'fbgUrl' 'ffa.vorType' 'getDraftData'
+  'getLeagueSettings' 'getYahooDraftData' 'getYahooPlayerStats'
+  'nflTeam.abb' 'nflTeam.id' 'nflTeam.name' 'nflstats' 'periodType'
+  'players' 'readNMFdata' 'readRTSdata' 'scrapeJQuery' 'scrapeJSONdata'
+  'scrapeXMLdata' 'tableMerge' 'tierFunction' 'updateFieldGoals'
+Undocumented data sets:
+  'adjustAAV' 'dataColumns' 'nflstats' 'players'
+Undocumented S4 methods:
+  generic '[' and siglist 'dataPeriod,ANY,ANY,ANY'
+  generic '[' and siglist 'sourceAnalyst,ANY,ANY,ANY'
+  generic '[' and siglist 'sourceSite,ANY,ANY,ANY'
+  generic '[' and siglist 'sourceTable,ANY,ANY,ANY'
+  generic '[<-' and siglist 'dataPeriod,ANY,ANY,ANY'
+  generic '[<-' and siglist 'sourceAnalyst,ANY,ANY,ANY'
+  generic '[<-' and siglist 'sourceSite,ANY,ANY,ANY'
+  generic '[<-' and siglist 'sourceTable,ANY,ANY,ANY'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter 'Writing R documentation files' in the 'Writing R
+Extensions' manual.
+* checking for code/documentation mismatches ... WARNING
+S4 class codoc mismatches from documentation object 'sourceAnalyst-class':
+Slots for class 'sourceAnalyst'
+  Code: analystId analystName playerId playerLink siteId siteName
+        siteUrl sourceId urlTable urlType weight
+  Inherited: siteId siteName siteUrl urlType urlTable playerLink
+        playerId
+  Docs: analystId analystName sourceId
+
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'analystOptions'
+  'period'
+
+Undocumented arguments in documentation object 'calcStdDev'
+  'na.rm'
+
+Undocumented arguments in documentation object 'calculateRisk'
+  'var1' 'var2'
+
+Undocumented arguments in documentation object 'clusterTier'
+  'points' 'position'
+
+Undocumented arguments in documentation object 'confidenceInterval'
+  'na.rm'
+
+Undocumented arguments in documentation object 'dataGadget'
+  'inputData'
+
+Undocumented arguments in documentation object 'dropoffValue'
+  'dataValue'
+
+Undocumented arguments in documentation object 'firstLast'
+  'lastFirst'
+Documented arguments not in \usage in documentation object 'firstLast':
+  'lastFist'
+
+Undocumented arguments in documentation object 'getAAVdata'
+  'AAVsources'
+Documented arguments not in \usage in documentation object 'getAAVdata':
+  'ADPsource'
+
+Undocumented arguments in documentation object 'getADPdata'
+  'ADPsources'
+Documented arguments not in \usage in documentation object 'getADPdata':
+  'ADPsource'
+
+Undocumented arguments in documentation object 'getProjections'
+  'adpSources' 'getADP' 'getECR' 'writeFile'
+Documented arguments not in \usage in documentation object 'getProjections':
+  'ADPsource'
+
+Undocumented arguments in documentation object 'periodType,dataPeriod-method'
+  'object'
+Documented arguments not in \usage in documentation object 'periodType,dataPeriod-method':
+  'x'
+
+Undocumented arguments in documentation object 'readUrl'
+  'idVar' 'playerLinkString' 'fbgUser' 'fbgPwd'
+
+Documented arguments not in \usage in documentation object 'retrieveData':
+  'srcAnalyst'
+
+Undocumented arguments in documentation object 'runScrape'
+  'fbgUser' 'fbgPwd' 'updatePlayers'
+
+Undocumented arguments in documentation object 'setTier'
+  'points' 'position'
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter 'Writing R documentation files' in the 'Writing R
+Extensions' manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of 'data' directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... WARNING
+  Warning: package needs dependence on R (>= 2.10)
+* checking R/sysdata.rda ... WARNING
+  Warning: package needs dependence on R (>= 2.10)
+* checking examples ... ERROR
+Running examples in 'ffanalytics-Ex.R' failed
+The error most likely occurred in:
+
+> ### Name: getProjections
+> ### Title: Calculate Projected Points
+> ### Aliases: getProjections
+> 
+> ### ** Examples
+> 
+> getProjections(scrapeData,                    ## Based on data in scrapeData
++                avgMethod = "weighted",        ## calculate the projections using a weighted average
++                leagueScoring = scoringRules,  ## using defined scoringRules,
++                vorBaseline, vorType,          ## VOR Baselines and types
++                teams = 12, format = "ppr",    ## for a 12 team ppr league
++                mflMocks = 0, mflLeagues = 0,  ## using only real MFL redraft league
++                adpSources =  c("FFC", "MFL")) ## and ADP data from MFL and FFC
+Error in getProjections(scrapeData, avgMethod = "weighted", leagueScoring = scoringRules,  : 
+  object 'scrapeData' not found
+Execution halted
+* checking PDF version of manual ... WARNING
+LaTeX errors when creating PDF version.
+This typically indicates Rd problems.
+* checking PDF version of manual without hyperrefs or index ... ERROR
+Re-running with no redirection of stdout/stderr.
+* DONE
+Status: 2 ERRORs, 8 WARNINGs, 2 NOTEs

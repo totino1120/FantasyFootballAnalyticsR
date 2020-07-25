@@ -22,7 +22,7 @@
 #' }
 #' @export getPlayerData
 getPlayerData <- function(season, weekNo, pos = position.name){
-#  mfl <- mflPlayers(season, weekNo, pos)
+  mfl <- mflPlayers(season, weekNo, pos)
   nfl <- nflPlayerData(season, weekNo, positions = pos)
 
   # Checking if any of the NFL IDs are missing
